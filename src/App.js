@@ -18,7 +18,7 @@ class App extends React.Component {
     event.preventDefault();
 
     this.setState({
-      addressList: [(this.state.addressList).push(this.state.inputText)],
+      addressList: [...this.state.addressList, this.state.inputText],
       inputText: "",
     });
   };
@@ -31,20 +31,25 @@ class App extends React.Component {
       </form>
 
       <div className="address-list">
-        <h1>{this.state.inputText}</h1>
+        <div>
+          {this.state.addressList.map((value, index) => {
+            return (
+               <Address key={index} value={this.state.addressList[index]}/>
+            )
+          })}
+        
+        </div>
       </div>
-      
-
       </div>
     )
   }
 
 }
 
-/*const Address = (props) => {
+const Address = (props) => {
     return (
-      <p>{props.number}</p>
+      <p>{props.value}</p>
     )
 }
-*/
+
 export default App;
